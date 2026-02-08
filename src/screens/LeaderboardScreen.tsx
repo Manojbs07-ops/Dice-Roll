@@ -19,7 +19,7 @@ export function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
     useEffect(() => {
         async function loadData() {
             setLoading(true);
-            const data = await fetchLeaderboard();
+            const data = await fetchLeaderboard(selectedLevel);
 
             if (data && data.length > 0) {
                 const mappedData: PlayerRecord[] = data.map((item: any) => ({
@@ -39,7 +39,7 @@ export function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
         }
 
         loadData();
-    }, [history]);
+    }, [history, selectedLevel]);
 
     const filteredLeaderboard = leaderboard.filter(game => (game.level || 1) === selectedLevel);
 

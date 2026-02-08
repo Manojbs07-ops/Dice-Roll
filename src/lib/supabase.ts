@@ -36,16 +36,28 @@ export async function saveGameResult(record: PlayerRecord) {
     return data
 }
 
-export async function fetchLeaderboard() {
+export async function fetchLeaderboard(level?: number) {
     if (!supabase) return null
 
-    // Fetch all scores, ordered by Level (desc) then Score (desc)
-    // High Levels > Low Levels
-    const { data, error } = await supabase
+    // Start building the query
+    let query = supabase
         .from('games')
         .select('*')
-        .order('level', { ascending: false })
+
+    // Filter by level if provided
+    if (level) {
+        if (level === 1) {
+            // For level 1, include nulls for backward compatibility
+            query = query.or(`level.eq.${level},level.is.null`)
+        } else {
+            query = query.eq('level', level)
+        }
+    }
+
+    // Sort by score (desc) then rolls_used (asc)
+    const { data, error } = await query
         .order('score', { ascending: false })
+        .order('rolls_used', { ascending: true })
         .limit(100)
 
     if (error) {
