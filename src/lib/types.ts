@@ -10,11 +10,11 @@ export interface LevelConfig {
 }
 
 export const LEVELS: LevelConfig[] = [
-    { id: 1, name: 'Beginner', description: 'The journey starts.', targetScore: 25, maxRolls: 5, color: 'blue' },
-    { id: 2, name: 'Amateur', description: 'Getting warmer.', targetScore: 50, maxRolls: 10, color: 'cyan' },
-    { id: 3, name: 'Pro', description: 'Serious business.', targetScore: 75, maxRolls: 15, color: 'purple' },
-    { id: 4, name: 'Master', description: 'True skill required.', targetScore: 100, maxRolls: 20, color: 'pink' },
-    { id: 5, name: 'Legend', description: 'Only the best survive.', targetScore: 150, maxRolls: 25, color: 'red' },
+    { id: 1, name: 'Beginner', description: 'The journey starts.', targetScore: 20, maxRolls: 5, color: 'blue' },
+    { id: 2, name: 'Amateur', description: 'Getting warmer.', targetScore: 40, maxRolls: 10, color: 'cyan' },
+    { id: 3, name: 'Pro', description: 'Serious business.', targetScore: 60, maxRolls: 15, color: 'purple' },
+    { id: 4, name: 'Master', description: 'True skill required.', targetScore: 80, maxRolls: 20, color: 'pink' },
+    { id: 5, name: 'Legend', description: 'Only the best survive.', targetScore: 100, maxRolls: 25, color: 'red' },
 ];
 
 export interface PlayerRecord {
@@ -47,7 +47,7 @@ export const INITIAL_STATE: GameState = {
     score: 0,
     rollsUsed: 0,
     maxRolls: 5, // Default for level 1
-    targetScore: 25, // Default for level 1
+    targetScore: 20, // Default for level 1
     status: 'idle',
     currentRoll: 1,
     history: [],
